@@ -8,6 +8,7 @@ library(rvest)
 # Se asigna la página de ams.meteors.org/firelogs
 webpage<- 'https://www.amsmeteors.org/about/'
 
+#Leyendo página
 webpage <- read_html(webpage)
 
 # Extrayendo contenido en la clase About AMS
@@ -48,40 +49,30 @@ dfPalabrasNoticia <- as.data.frame(tablaPalabras)
 # Almacenando la información en CSV
 write.csv(dfPalabrasNoticia, file="PalabrasNoticia.csv")
 
-# o en un txt
+# Almacenando la información en un txt
 write.table(dfPalabrasNoticia, file="PalabrasNoticia.txt")
 
 ##########################################################
 ######## Iniciando la extracción de avistamientos ########
 ##########################################################
 
-# Se asigna la página de ams.meteors.org/firelogs
-Fireball<- 'https://www.amsmeteors.org/members/imo_view/browse_events?country=-1&year=2018&num_report=-99'
+# Se asigna la página de ams.meteors.org/observations/
+Fireball<- 'https://www.amsmeteors.org/observations/'
 
+#Leyendo página
 Fireball <- read_html(Fireball)
 
-# Extrayendo contenido en la clase Registro general
+# Extrayendo contenido en la Observaciones Table Responsive
 tabla <- html_nodes(Fireball,".table-responsive")
 
-# Extrayendo contenido en la clase registro de avistamientos
+# Extrayendo contenido en la clase tabla respuestas
 tablainfo <- html_nodes(tabla,"table")
+
+
 
 # Extraccion informacion tabla 
 tabla1 <- html_table(tablainfo)
 
 # Viendo a priori la info en la variable textoNoticia
 print(tabla1)
-
-# Eliminando los \n,comillas("),puntos(.) y comas(,) del texto
-registro <- gsub("\n","",registro2)
-registro <- gsub("\"","",registro2)
-registro <- gsub("[.]","",registro2)
-registro <- gsub(",","",registro2)
-registro <- gsub("-","",registro2)
-registro <- gsub("'","",registro2)
-registro <- gsub(":","",registro2)
-registro <- gsub(";","",registro2)
-
-# Viendo a priori la info en la variable textoNoticia
-print(registro)
 
