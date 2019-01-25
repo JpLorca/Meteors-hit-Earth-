@@ -29,7 +29,7 @@ textoNoticia <- gsub("'","",textoNoticia)
 textoNoticia <- gsub(":","",textoNoticia)
 textoNoticia <- gsub(";","",textoNoticia)
 
-# Viendo a priori la info en la variable textoNoticia
+# Viendo la info en la variable textoNoticia limpia
 print(textoNoticia)
 
 # Separando las palabras por espacio
@@ -48,7 +48,7 @@ dfPalabrasNoticia <- as.data.frame(tablaPalabras)
 # Almacenando la informaci?n en CSV
 write.csv(dfPalabrasNoticia, file="PalabrasNoticia.csv")
 
-# o en un txt
+# almacenando info en un txt
 write.table(dfPalabrasNoticia, file="PalabrasNoticia.txt")
 
 ##########################################################
@@ -57,7 +57,7 @@ write.table(dfPalabrasNoticia, file="PalabrasNoticia.txt")
 
 fullTable <- data.frame()
 
-for (i in 1:3) {
+for (i in 1:50) {
   # Se asigna la p?gina de ams.meteors.org/firelogs
   Fireball <- paste("https://www.amsmeteors.org/members/imo_view/browse_events?country=-1&year=2018&num_report=-99&page=",i,sep = "")
   
@@ -80,7 +80,7 @@ for (i in 1:3) {
   dfTabla$NA..1 <- NULL
   dfTabla$NA..2 <- NULL
   
-  # Viendo a priori la info en la variable textoNoticia
+  # Viendo la info del dataframe limpia
   print(dfTabla)
   
   fullTable <- rbind(fullTable,dfTabla)
@@ -90,7 +90,6 @@ for (i in 1:3) {
   
   # Almacenando la informaci?n en CSV
   write.csv(fullTable, file="TablaCompletareportes.csv")
-  
   
 }
 
