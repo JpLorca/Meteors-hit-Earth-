@@ -88,20 +88,25 @@ for (i in 1:3) {
   # Eliminando elementos repetidos
   fullTable <- unique(fullTable)
   
+  # Almacenando la informaci?n en CSV
+  write.csv(fullTable, file="TablaCompletareportes.csv")
+  
+  
 }
 
-#AGREGAR GRAFICOS Y OTRAS COSAS
 
 
 ##########################################################
 ######## Iniciando la extracci?n de usuarios #############
 ##########################################################
 
-fullTable2 <- data.frame()
+Tablacompleta <- data.frame()
 
 for (i in 1:7) {
   # Se asigna la p?gina de ams.meteors.org/observations/
   Users <- paste("https://www.amsmeteors.org/observations/",i,sep = "")
+  
+  print(Users)
   
 #Leyendo p?gina
 Users <- read_html(Users)
@@ -116,9 +121,26 @@ tablainfo <- html_nodes(tabla,"table")
 # Extracci?n informacion tabla 
 tabla1 <- html_table(tablainfo)
 
-# Viendo a priori la info en la variable tabla1
-print(tabla1)
+# Convierte a data.frame
+dfusuarios <- data.frame(tabla1)
+
+# Elimina datos malos
+dfusuarios <- dfusuarios[-c(1), ]
+dfusuarios$NA.<- NULL
+dfusuarios$NA..1 <- NULL
+dfusuarios$NA..2 <- NULL
+
+# Viendo a priori la info en la variable textoNoticia
+print(dfusuarios)
+
+Tablacompleta <- rbind(Tablacompleta,dfusuarios)
+
+# Eliminando elementos repetidos
+Tablacompleta <- unique(Tablacompleta)
+
+# Almacenando la informaci?n en CSV
+write.csv(Tablacompleta, file="TablaCompletausuarios.csv")
 
 }
 
-#JUNTAR EN 1 GRAFICO Y AGREGAR MAS COSAS 
+
