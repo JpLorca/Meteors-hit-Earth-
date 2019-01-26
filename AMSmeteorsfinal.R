@@ -93,6 +93,18 @@ for (i in 1:50) {
   
 }
 
+#usando ggplot2
+#install.packages("GGPLOT2")
+
+library('ggplot2')
+
+# Respecto al precio
+fullTable %>%
+  ggplot() +
+  aes(x = Countries, y = X..of.Rep.) +
+  geom_bar(stat="identity")
+
+#agregar boxplot
 
 
 ##########################################################
