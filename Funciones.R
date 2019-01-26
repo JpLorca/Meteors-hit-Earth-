@@ -57,7 +57,7 @@ write.table(dfPalabrasNoticia, file="PalabrasNoticia.txt")
 
 fullTable <- data.frame()
 
-for (i in 1:50) {
+for (i in 1:60) {
   # Se asigna la p?gina de ams.meteors.org/firelogs
   Fireball <- paste("https://www.amsmeteors.org/members/imo_view/browse_events?country=-1&year=2018&num_report=-99&page=",i,sep = "")
   
@@ -104,7 +104,11 @@ fullTable %>%
   aes(x = Countries, y = X..of.Rep.) +
   geom_bar(stat="identity")
 
-#agregar boxplot
+# Gráfico boxplot 
+fullTable %>%
+  ggplot() +
+  geom_boxplot(aes(x = Countries, y = X..of.Rep.)) +
+  theme_bw()
 
 
 ##########################################################
@@ -153,5 +157,5 @@ Tablacompleta <- unique(Tablacompleta)
 write.csv(Tablacompleta, file="TablaCompletausuarios.csv")
 
 }
-
+#No se grafica, ya que no se cree tan interesante como avistamientos
 
