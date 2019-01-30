@@ -45,6 +45,12 @@ tablaPalabras<-table(unlistNoticias)
 # Pasando la informaci?n a un data frame
 dfPalabrasNoticia <- as.data.frame(tablaPalabras)
 
+# Veo nro de observaciones y que variables hay en el data frame
+str(dfPalabrasNoticia)
+
+# Veo las primeras 6 filas del data frame 
+head(dfPalabrasNoticia)
+
 # Almacenando la informaci?n en CSV
 write.csv(dfPalabrasNoticia, file="PalabrasNoticia.csv")
 
@@ -92,6 +98,9 @@ for (i in 1:60) {
   write.csv(fullTable, file="TablaCompletareportes.csv")
   
 }
+
+# Veo nro de observaciones y que variables hay en el data frame
+str(fullTable)
 
 #usando ggplot2
 #install.packages("GGPLOT2")
@@ -157,5 +166,9 @@ Tablacompleta <- unique(Tablacompleta)
 write.csv(Tablacompleta, file="TablaCompletausuarios.csv")
 
 }
+
+# Veo nro de observaciones y que variables hay en el data frame
+str(Tablacompleta)
+
 #No se grafica, ya que no se cree tan interesante como avistamientos
 
